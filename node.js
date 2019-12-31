@@ -8,10 +8,12 @@ fs.readdir('img-ex', (err, files) =>{
 for(let i = 0; i < files.length; i++ ){
       // Получаем путь расположения каждого элемента
       // Первый аргумент - родительская директория; Второй - имя файла
-    let pathToFile = path.win32.resolve('img-ex', files[i]);
-
+   let pathToFile = path.resolve('img-ex', files[i]);
+  
+   let pathToDir = path.dirname(pathToFile);
+  
       // Если вторым аргументом передать просто новое имя файла, то файл после переименования будет перемещён в корневую директорию(не совсем очевидная херня, однако)
-       fs.rename(`${pathToFile}`, `img-ex\\img-${i + 1}.jpg`, (err)=>{
+       fs.rename(`${pathToFile}`, `${pathToDir}/smerd-${i + 81}.jpg`, (err)=>{
        if(err) throw err
        console.log('File renamed successfully!');
    })
